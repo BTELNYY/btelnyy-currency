@@ -4,10 +4,10 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.LinkOption;
 import java.nio.file.Path;
-public class main extends JavaPlugin {
+public class Main extends JavaPlugin {
 	//meant for the server to know what to call when doing bukkit timers
-	private static main instance;
-	public static main getInstance(){
+	private static Main instance;
+	public static Main getInstance(){
 	    return instance;
 	}
 	public static void log(java.util.logging.Level l, String m) {
@@ -21,14 +21,23 @@ public class main extends JavaPlugin {
     	Path config = Path.of("./plugins/btelnyy");
     	if(Files.notExists(config, LinkOption.NOFOLLOW_LINKS)) {
     		try {
-				Files.createDirectory(config, null);
+				Files.createDirectory(config);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+    	}
+    	Path cur_config = Path.of("./plugins/btelnyy/currency_data");
+    	if(Files.notExists(cur_config, LinkOption.NOFOLLOW_LINKS)) {
+    		try {
+				Files.createDirectory(cur_config);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
     	}
     	//event handle
     	getServer().getPluginManager().registerEvents(new EventHandle(), this);
-    	//load MOTD on plugin enable
+    	//set classloader
+    	Thread.currentThread().setContextClassLoader(this.getClassLoader());
     }
    
     // Fired when plugin is disabled
