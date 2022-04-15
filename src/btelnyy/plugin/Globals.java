@@ -5,4 +5,5 @@ import btelnyy.plugin.PlayerData.PlayerData;
 public class Globals {
 	public static Hashtable<String, PlayerData> CachedPlayers = new Hashtable<String, PlayerData>();
 	public static int GlobalMaxMoney = 10000;
+	public static int StartingMoney = 0;
 }

@@ -1,19 +1,20 @@
 package btelnyy.plugin.PlayerData;
 
 public class PlayerData {
-	String player_uuid;
-	int player_balance;
-	
-	public void setplayer_uuid(String UUID) {
-		player_uuid = UUID;
+	public String PlayerUuid;
+	public int PlayerBalance;
+	/*
+	public void setPlayerUuid(String UUID) {
+		PlayerUuid = UUID;
 	}
-	public void setplayer_balance(int Balance) {
-		player_balance = Balance;
+	public void setPlayerBalance(int Balance) {
+		PlayerBalance = Balance;
 	}
-	public String getplayer_uuid() {
-		return player_uuid;
+	public String getPlayerUuid() {
+		return PlayerUuid;
 	}
-	public int getplayer_balance() {
-		return player_balance;
+	public int getPlayerBalance() {
+		return PlayerBalance;
 	}
+	*/
 }
