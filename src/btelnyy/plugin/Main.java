@@ -50,9 +50,7 @@ public class Main extends JavaPlugin {
     @Override
     public void onDisable() {
     	//if the server is closing, do this.
-    	for(String key : Globals.CachedPlayers.keySet()) {
-    		PlayerDataHandler.SaveAndRemoveData(key);
-    	}
+    	PlayerDataHandler.ServerShutdown();
     }
     public void LoadConfig() {
     	FileConfiguration config = instance.getConfig();

@@ -84,6 +84,7 @@ public class PlayerDataHandler {
 			PlayerData pd = Globals.CachedPlayers.get(UUID);
 			yaml.dump(pd, writer);
 			writer.close();
+			Main.log(Level.INFO, "Saving " + UUID + "'s data");
 		} catch (Exception e) {
 			Main.log(java.util.logging.Level.WARNING, "An error occured when trying to save playerdata for " + UUID + ": " + e.getMessage());
 		}
@@ -100,5 +101,16 @@ public class PlayerDataHandler {
 	public static void DeleteData(String UUID) {
 		File player_data = new File(path + UUID + ".yml");
 		player_data.delete();
+	}
+	public static void SaveAll() {
+		Main.log(Level.INFO, "Saving all players data....");
+		for(String UUID : Globals.CachedPlayers.keySet()) {
+			SaveData(UUID);
+		}
+	}
+	public static void ServerShutdown() {
+    	for(String key : Globals.CachedPlayers.keySet()) {
+    		PlayerDataHandler.SaveAndRemoveData(key);
+    	}
 	}
 }
