@@ -3,6 +3,7 @@ package btelnyy.plugin.PlayerData;
 public class PlayerData {
 	public String PlayerUuid;
 	public int PlayerBalance;
+	public boolean PlayerCanPay = true;
 	/*
 	public void setPlayerUuid(String UUID) {
 		PlayerUuid = UUID;

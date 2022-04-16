@@ -1,9 +1,11 @@
 package btelnyy.plugin;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.LinkOption;
-import java.nio.file.Path;
+
+import btelnyy.plugin.PlayerData.PlayerDataHandler;
+
+import java.io.File;
+import java.util.logging.Level;
 public class Main extends JavaPlugin {
 	//meant for the server to know what to call when doing bukkit timers
 	private static Main instance;
@@ -17,23 +19,20 @@ public class Main extends JavaPlugin {
     @Override
     public void onEnable() {
     	instance = this;
-    	//check if our config path exists
-    	Path config = Path.of("./plugins/btelnyy");
-    	if(Files.notExists(config, LinkOption.NOFOLLOW_LINKS)) {
+    	//create dir if it doesnt exist
+    	if(!instance.getDataFolder().exists()) {
+    		instance.getDataFolder().mkdir();
+    	}
+    	File config_yml = new File("./plugins/" +  instance.getDataFolder() + "/config.yml");
+    	if(!config_yml.exists()) {
     		try {
-				Files.createDirectory(config);
-			} catch (IOException e) {
+				instance.saveDefaultConfig();
+			} catch (Exception e) {
+				log(Level.SEVERE, "Config.yml could not be created. Error: " + e.getMessage());
 				e.printStackTrace();
 			}
     	}
-    	Path cur_config = Path.of("./plugins/btelnyy/currency_data");
-    	if(Files.notExists(cur_config, LinkOption.NOFOLLOW_LINKS)) {
-    		try {
-				Files.createDirectory(cur_config);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-    	}
+    	PlayerDataHandler.GenerateFolder();
     	//event handle
     	getServer().getPluginManager().registerEvents(new EventHandle(), this);
     	//set classloader
@@ -43,6 +42,17 @@ public class Main extends JavaPlugin {
     // Fired when plugin is disabled
     @Override
     public void onDisable() {
-    	
+    	//if the server is closing, do this.
+    	for(String key : Globals.CachedPlayers.keySet()) {
+    		PlayerDataHandler.SaveAndRemoveData(key);
+    	}
+    }
+    public void LoadConfig() {
+    	FileConfiguration config = instance.getConfig();
+    	Globals.CurrencyPath =  config.getString("currency_save_path");
+    	Globals.GlobalMaxMoney = config.getInt("global_max_money");
+    	Globals.StartingMoney = config.getInt("player_starting_money");
+    	Globals.DeductAmount = config.getInt("deduct_amount_precent");
+    	Globals.CurrencySymbol = config.getString("currency_symbol");
     }
 }
