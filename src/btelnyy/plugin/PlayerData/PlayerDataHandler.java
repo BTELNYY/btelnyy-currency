@@ -88,4 +88,17 @@ public class PlayerDataHandler {
 			Main.log(java.util.logging.Level.WARNING, "An error occured when trying to save playerdata for " + UUID + ": " + e.getMessage());
 		}
 	}
+	public static void ResetData(String UUID) {
+		PlayerData data = Globals.CachedPlayers.get(UUID);
+		data.PlayerBalance = 0;
+		data.PlayerCanPay = true;
+		data.PlayerUuid = UUID;
+		Globals.CachedPlayers.remove(UUID);
+		Globals.CachedPlayers.put(UUID, data);
+		SaveData(UUID);
+	}
+	public static void DeleteData(String UUID) {
+		File player_data = new File(path + UUID + ".yml");
+		player_data.delete();
+	}
 }

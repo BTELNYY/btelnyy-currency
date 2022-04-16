@@ -1,4 +1,4 @@
-package Commands;
+package btelnyy.plugin.Commands;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -17,14 +17,18 @@ public class CommandPay implements CommandExecutor {
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String arg2, String[] args) {
 		Player Sender = (Player) sender;
-		Player Target = Bukkit.getPlayer(arg2);
-		int PayAmount = Integer.parseInt(args[3]);
+		Player Target = Bukkit.getPlayer(args[0]);
+		int PayAmount = Integer.parseInt(args[1]);
 		if(args.length < 2) {
 			Sender.sendMessage(ChatColor.RED + "Error: Invalid syntax. Usage: /pay <user> <amount>");
 			return true;
 		}
-		if(Bukkit.getPlayer(arg2) == null){
+		if(Bukkit.getPlayer(args[0]) == null){
 			Sender.sendMessage(ChatColor.RED + "Error: Player not found.");
+			return true;
+		}
+		if(Sender == Target) {
+			Sender.sendMessage(ChatColor.RED + "Error: You cannot pay yourself.");
 			return true;
 		}
 		//moved to prevent massive errors
@@ -45,8 +49,8 @@ public class CommandPay implements CommandExecutor {
 		}
 		SenderData.PlayerBalance -= PayAmount;
 		TargetData.PlayerBalance += PayAmount;
-		Sender.sendMessage(ChatColor.GREEN + "You have payed " + Target.getName() + " " + Globals.CurrencySymbol + PayAmount);
-		Target.sendMessage(ChatColor.GREEN + "You have received  " + " " + Globals.CurrencySymbol + PayAmount + "from:" + Target.getName());
+		Sender.sendMessage(ChatColor.GRAY + "You have payed " + Target.getName() + " " + Globals.CurrencySymbol + PayAmount);
+		Target.sendMessage(ChatColor.GRAY + "You have received " + Globals.CurrencySymbol + PayAmount + " from: " + Target.getName());
 		//save data but do not remove it from the cache
 		PlayerDataHandler.SaveData(SenderData.PlayerUuid);
 		PlayerDataHandler.SaveData(TargetData.PlayerUuid);

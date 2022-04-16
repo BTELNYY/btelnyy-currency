@@ -15,3 +15,11 @@ commands:
       description: View your balance
       usage: /balance
       permission: btelnyy.command.balance
+   currencyreset:
+      description: Reset a player
+      usage: /currencyreset <target>
+      permission: btelnyy.command.currencyreset
+   setmoney:
+      description: Set an amount of money to a player
+      usage: /setmoney <target> <amount>
+      permission: btelnyy.command.setmoney
