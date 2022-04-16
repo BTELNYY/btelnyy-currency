@@ -7,3 +7,11 @@ commands:
       description: Pay another player
       usage: /pay <target> <amount>
       permission: btelnyy.command.pay
+   bal:
+      description: View your balance
+      usage: /bal
+      permission: btelnyy.command.balance
+   balance:
+      description: View your balance
+      usage: /balance
+      permission: btelnyy.command.balance

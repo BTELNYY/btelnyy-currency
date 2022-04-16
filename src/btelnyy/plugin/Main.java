@@ -34,12 +34,15 @@ public class Main extends JavaPlugin {
 			}
     	}
     	PlayerDataHandler.GenerateFolder();
+    	LoadConfig();
     	//event handle
     	getServer().getPluginManager().registerEvents(new EventHandle(), this);
     	//set classloader
     	Thread.currentThread().setContextClassLoader(this.getClassLoader());
     	//commands
     	this.getCommand("pay").setExecutor(new CommandPay());
+    	this.getCommand("bal").setExecutor(new CommandBalance());
+    	this.getCommand("balance").setExecutor(new CommandBalance());
     }
    
     // Fired when plugin is disabled

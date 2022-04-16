@@ -7,7 +7,7 @@ public class Globals {
 	//these contain default values
 	public static int GlobalMaxMoney = 10000;
 	public static int StartingMoney = 0;
-	public static String CurrencyPath = "./plugins/btelnyy-social-currency-expierement/CurrencyData/";
+	public static String CurrencyPath = "./plugins/btelnyy-currency/CurrencyData/";
 	public static int DeductAmount = 70;
 	public static String CurrencySymbol = "$";
 }

@@ -6,6 +6,6 @@ deduct_amount_precent: 70
 #I recommend not touching this in fear of breaking stuff
 currency_save_path: "./plugins/btelnyy-currency/CurrencyData/"
 #how much money should every player receive after joining for the first time?
-player_starting_money: 0
+player_starting_money: 10
 #what is the currency symbol?
 currency_symbol: "$"
