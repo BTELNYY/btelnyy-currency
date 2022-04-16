@@ -1,2 +1,2 @@
-# btelnyy-currency-social-expieremnt
- mc plugin meant for a test with loaflover
+# btelnyy-currency
+ A currency minecraft plugin
