@@ -1,4 +1,4 @@
-name: btelnyy-social-currency-expierement
+name: btelnyy-currency
 main: btelnyy.plugin.Main
 version: 1.0.0
 api-version: 1.18

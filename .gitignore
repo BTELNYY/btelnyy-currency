@@ -23,7 +23,7 @@
 hs_err_pid*
 
 # other
-/Spigot/
+/BuildTools/
 /.settings/
 /bin/
 /target/

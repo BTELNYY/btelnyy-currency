@@ -4,7 +4,7 @@ global_max_money: 10000
 deduct_amount_precent: 70
 #default save path
 #I recommend not touching this in fear of breaking stuff
-currency_save_path: "./plugins/btelnyy-social-currency-expierement/CurrencyData/"
+currency_save_path: "./plugins/btelnyy-currency/CurrencyData/"
 #how much money should every player receive after joining for the first time?
 player_starting_money: 0
 #what is the currency symbol?

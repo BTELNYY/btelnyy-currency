@@ -2,6 +2,7 @@ package btelnyy.plugin;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import Commands.*;
 import btelnyy.plugin.PlayerData.PlayerDataHandler;
 
 import java.io.File;
@@ -37,6 +38,8 @@ public class Main extends JavaPlugin {
     	getServer().getPluginManager().registerEvents(new EventHandle(), this);
     	//set classloader
     	Thread.currentThread().setContextClassLoader(this.getClassLoader());
+    	//commands
+    	this.getCommand("pay").setExecutor(new CommandPay());
     }
    
     // Fired when plugin is disabled
