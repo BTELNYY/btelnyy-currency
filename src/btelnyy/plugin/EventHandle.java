@@ -1,10 +1,11 @@
 package btelnyy.plugin;
+import java.util.logging.Level;
+
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerKickEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 
@@ -16,19 +17,26 @@ public class EventHandle implements Listener{
 	public void onPlayerJoin(PlayerJoinEvent event) {
 		Player player = event.getPlayer();
 		String UUID = player.getUniqueId().toString();
-		PlayerDataHandler.GetPlayerData(UUID);
+		try {
+			PlayerDataHandler.GetPlayerData(UUID);
+		}catch(Exception e) {
+			PlayerDataHandler.DeleteData(UUID);
+			Main.log(Level.WARNING, "Failed loading " + UUID + "'s" + "player data. ");
+			e.printStackTrace();
+			player.kickPlayer(ChatColor.RED + "Your playerdata failed to load, try rejoining");
+		}
 	}
 	@EventHandler
 	public void onPlayerLeave(PlayerQuitEvent event) {
 		Player p = event.getPlayer();
 		String UUID = p.getUniqueId().toString();
-		PlayerDataHandler.SaveAndRemoveData(UUID);
-	}
-	@EventHandler
-	public void onPlayerKicked(PlayerKickEvent event) {
-		Player p = event.getPlayer();
-		String UUID = p.getUniqueId().toString();
-		PlayerDataHandler.SaveAndRemoveData(UUID);
+		try {
+			PlayerDataHandler.SaveAndRemoveData(UUID);
+		}catch(Exception e) {
+			PlayerDataHandler.DeleteData(UUID);
+			String UUID2 = p.getUniqueId().toString();
+			PlayerDataHandler.SaveAndRemoveData(UUID2);
+		}
 	}
 	@EventHandler
 	public void onEntityDeath(EntityDeathEvent event) {

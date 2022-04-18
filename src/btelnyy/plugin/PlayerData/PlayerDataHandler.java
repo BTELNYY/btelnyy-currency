@@ -27,15 +27,31 @@ public class PlayerDataHandler {
 			return Globals.CachedPlayers.get(UUID);
 		} //not cached uuid
 		File player_data = new File(path + UUID + ".yml");
+		String yamldata = null;
+		try {
+			yamldata = Files.readString(Path.of(player_data.toString()));
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		if(yamldata == "null") {
+			DeleteData(UUID);
+			CreateNewDataFile(UUID);
+			GetPlayerData(UUID);
+			return new PlayerData();
+		}
 		Yaml yaml = new Yaml(new Constructor(PlayerData.class));
 		if(player_data.exists()) {
-			String yamldata = null;
+			yamldata = null;
 			try {
 				yamldata = Files.readString(Path.of(player_data.toString()));
 			} catch (IOException e) {
 				Main.log(java.util.logging.Level.WARNING, "Can't open read data for UUID: " + UUID + " Message: " + e.getMessage());
 			}
 			PlayerData data = yaml.load(yamldata);
+			if(data == null) {
+				DeleteData(UUID);
+				data = CreateNewDataFile(UUID);
+			}
 			Globals.CachedPlayers.put(UUID, data);
 			return data;
 		}else{
@@ -71,6 +87,7 @@ public class PlayerDataHandler {
 			PlayerData pd = Globals.CachedPlayers.get(UUID);
 			yaml.dump(pd, writer);
 			writer.close();
+			Main.log(Level.INFO, "Saving " + UUID + "'s data");
 			Globals.CachedPlayers.remove(UUID);
 		} catch (Exception e) {
 			Main.log(java.util.logging.Level.WARNING, "An error occured when trying to save playerdata for " + UUID + ": " + e.getMessage());
