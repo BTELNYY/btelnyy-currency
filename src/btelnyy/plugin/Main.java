@@ -21,10 +21,11 @@ public class Main extends JavaPlugin {
     public void onEnable() {
     	instance = this;
     	//create dir if it doesnt exist
+    	log(Level.INFO, instance.getDataFolder().toString());
     	if(!instance.getDataFolder().exists()) {
     		instance.getDataFolder().mkdir();
     	}
-    	File config_yml = new File("./plugins/" +  instance.getDataFolder() + "/config.yml");
+    	File config_yml = new File(instance.getDataFolder() + "/config.yml");
     	if(!config_yml.exists()) {
     		try {
 				instance.saveDefaultConfig();
@@ -45,6 +46,8 @@ public class Main extends JavaPlugin {
     	this.getCommand("balance").setExecutor(new CommandBalance());
     	this.getCommand("currencyreset").setExecutor(new CommandResetPlayer());
     	this.getCommand("setmoney").setExecutor(new CommandSetMoney());
+    	this.getCommand("togglepay").setExecutor(new CommandTogglePay());
+    	this.getCommand("togglepaid").setExecutor(new CommandTogglePaid());
     }
     // Fired when plugin is disabled
     @Override
@@ -54,7 +57,8 @@ public class Main extends JavaPlugin {
     }
     public void LoadConfig() {
     	FileConfiguration config = instance.getConfig();
-    	Globals.CurrencyPath =  config.getString("currency_save_path");
+    	Globals.DataFolderName = config.getString("currency_save_path");
+    	Globals.CurrencyPath = instance.getDataFolder().toString() + Globals.DataFolderName;
     	Globals.GlobalMaxMoney = config.getInt("global_max_money");
     	Globals.StartingMoney = config.getInt("player_starting_money");
     	Globals.DeductAmount = config.getInt("deduct_amount_precent");

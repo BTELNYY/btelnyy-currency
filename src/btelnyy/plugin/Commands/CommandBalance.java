@@ -16,7 +16,7 @@ public class CommandBalance implements CommandExecutor{
 	@Override
 	public boolean onCommand(CommandSender arg0, Command arg1, String arg2, String[] arg3) {
 		Player sender = (Player) arg0;
-		if(arg2 != null &&  Bukkit.getPlayer(arg3[0]) != null && Bukkit.getPlayer(arg3[0]) != sender) {
+		if(arg3.length < 0 &&  Bukkit.getPlayer(arg3[0]) != null && Bukkit.getPlayer(arg3[0]) != sender) {
 			Player Target = Bukkit.getPlayer(arg3[0]);
 			PlayerData TargetData = PlayerDataHandler.GetPlayerData(Target.getUniqueId().toString());
 			sender.sendMessage(ChatColor.GRAY + Target.getName() + "'s balance: " + Globals.CurrencySymbol + TargetData.PlayerBalance);;

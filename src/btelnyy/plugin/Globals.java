@@ -10,4 +10,5 @@ public class Globals {
 	public static String CurrencyPath = "./plugins/btelnyy-currency/CurrencyData/";
 	public static int DeductAmount = 70;
 	public static String CurrencySymbol = "$";
+	public static String DataFolderName = "CurrencyData";
 }

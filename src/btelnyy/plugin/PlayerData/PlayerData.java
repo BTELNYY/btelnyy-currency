@@ -1,21 +1,8 @@
 package btelnyy.plugin.PlayerData;
 
 public class PlayerData {
-	public String PlayerUuid;
-	public int PlayerBalance;
+	public String PlayerUuid = "00000000-0000-0000-0000-000000000000";
+	public int PlayerBalance = 0;
 	public boolean PlayerCanPay = true;
-	/*
-	public void setPlayerUuid(String UUID) {
-		PlayerUuid = UUID;
-	}
-	public void setPlayerBalance(int Balance) {
-		PlayerBalance = Balance;
-	}
-	public String getPlayerUuid() {
-		return PlayerUuid;
-	}
-	public int getPlayerBalance() {
-		return PlayerBalance;
-	}
-	*/
+	public boolean PlayerCanBePaid = true;
 }

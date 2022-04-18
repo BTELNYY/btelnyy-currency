@@ -23,3 +23,11 @@ commands:
       description: Set an amount of money to a player
       usage: /setmoney <target> <amount>
       permission: btelnyy.command.setmoney
+   togglepay:
+      description: Toggle if a player can pay others
+      usage: /togglepay <player>
+      permission: btelnyy.command.togglepay
+   togglepaid:
+      description: Toggle if a player can get money from others
+      usage: /togglepaid <player>
+      permission: btelnyy.command.togglepaid
