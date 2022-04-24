@@ -24,6 +24,21 @@ hs_err_pid*
 
 # other
 /BuildTools/
-/.settings/
-/bin/
-/target/
+
+# Ignore anti-build-system files
+out/
+build/
+bin/
+
+# Ignore gay IDE files
+.settings/
+.classpath
+.project
+
+# Ignore chad IDE files
+.idea/
+*.iml
+
+# Ignore chad Maven files
+target/
+dependency-reduced-pom.xml
