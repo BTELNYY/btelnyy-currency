@@ -29,7 +29,6 @@ public class CurrencyPlugin extends JavaPlugin {
     public void onEnable() {
         instance = this;
         //create dir if it doesnt exist
-        log(Level.INFO, instance.getDataFolder().toString());
         if (!instance.getDataFolder().exists()) {
             instance.getDataFolder().mkdir();
         }
@@ -56,6 +55,7 @@ public class CurrencyPlugin extends JavaPlugin {
         this.getCommand("setmoney").setExecutor(new CommandSetMoney());
         this.getCommand("togglepay").setExecutor(new CommandTogglePay());
         this.getCommand("togglepaid").setExecutor(new CommandTogglePaid());
+        log(Level.INFO, "Check out the project on GitHub!: https://github.com/BTELNYY/btelnyy-currency");
     }
 
     // Fired when plugin is disabled

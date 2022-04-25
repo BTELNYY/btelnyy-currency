@@ -42,3 +42,5 @@ bin/
 # Ignore chad Maven files
 target/
 dependency-reduced-pom.xml
+*.code-workspace
+.vscode/

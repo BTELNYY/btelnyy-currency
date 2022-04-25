@@ -1,5 +1,5 @@
 name: btelnyy-currency
-main: btelnyy.plugin.Main
+main: me.btelnyy.currency.CurrencyPlugin
 version: ${project.version}
 api-version: 1.18
 commands:
