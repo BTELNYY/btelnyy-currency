@@ -1,6 +1,9 @@
 # btelnyy-currency
- A currency minecraft plugin
+ * A currency minecraft plugin.
+ * Check us out on [Discord](https://discord.gg/P22tFkjTm3)
+ * Report issues on GitHub or on Discord, I don't care which.
 ## Commands
+ If you forget the syntax, just type the command without any arguments and it will print the syntax for you.
 ### User commands
 > `/pay <player> <amount>`
 * Pay another user funds
