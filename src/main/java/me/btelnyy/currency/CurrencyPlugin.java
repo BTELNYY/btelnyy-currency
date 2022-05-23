@@ -3,6 +3,9 @@ package me.btelnyy.currency;
 import me.btelnyy.currency.command.*;
 import me.btelnyy.currency.constant.Globals;
 import me.btelnyy.currency.listener.EventHandle;
+
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.PluginCommand;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -48,14 +51,23 @@ public class CurrencyPlugin extends JavaPlugin {
         //set classloader
         Thread.currentThread().setContextClassLoader(this.getClassLoader());
         //commands
-        this.getCommand("pay").setExecutor(new CommandPay());
-        this.getCommand("bal").setExecutor(new CommandBalance());
-        this.getCommand("balance").setExecutor(new CommandBalance());
-        this.getCommand("currencyreset").setExecutor(new CommandResetPlayer());
-        this.getCommand("setmoney").setExecutor(new CommandSetMoney());
-        this.getCommand("togglepay").setExecutor(new CommandTogglePay());
-        this.getCommand("togglepaid").setExecutor(new CommandTogglePaid());
+        registerCommandExecutor("pay", new CommandPay());
+        registerCommandExecutor("bal", new CommandBalance());
+        registerCommandExecutor("balance", new CommandBalance());
+        registerCommandExecutor("currencyreset", new CommandResetPlayer());
+        registerCommandExecutor("setmoney", new CommandSetMoney());
+        registerCommandExecutor("togglepay", new CommandTogglePay());
+        registerCommandExecutor("togglepaid", new CommandTogglePaid());
+        registerCommandExecutor("withdraw", new CommandWithdraw());
+        
         log(Level.INFO, "Check out the project on GitHub!: https://github.com/BTELNYY/btelnyy-currency");
+    }
+
+    private void registerCommandExecutor(String commandName, CommandExecutor commandExecutor) {
+        PluginCommand command = this.getCommand(commandName);
+        if (command == null)
+            throw new NullPointerException(String.format("\"%s\" is not registered in the plugin.yml", commandName));
+        command.setExecutor(commandExecutor);
     }
 
     // Fired when plugin is disabled

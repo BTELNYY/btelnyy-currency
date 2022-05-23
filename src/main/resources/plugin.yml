@@ -31,3 +31,7 @@ commands:
       description: Toggle if a player can get money from others
       usage: /togglepaid <player>
       permission: btelnyy.command.togglepaid
+   withdraw:
+      description: Withdraw money into an item
+      usage: /withdraw <amount>
+      permission: btelnyy.command.withdraw

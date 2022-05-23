@@ -8,8 +8,12 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.event.entity.EntityDeathEvent;
 
 import me.btelnyy.currency.playerdata.PlayerData;
@@ -30,6 +34,18 @@ public class EventHandle implements Listener {
             e.printStackTrace();
             player.kickPlayer(ChatColor.RED + "Your playerdata failed to load, try rejoining");
         }
+    }
+
+    @EventHandler
+    public void onItemInteract(PlayerInteractEvent event){
+        org.bukkit.event.block.Action action = event.getAction();
+        if(action != org.bukkit.event.block.Action.RIGHT_CLICK_AIR || action != org.bukkit.event.block.Action.RIGHT_CLICK_BLOCK){
+            return;
+        }
+        Player p = event.getPlayer();
+        Inventory inv = p.getInventory();
+        ItemStack main = p.getInventory().getItemInMainHand();
+        ItemMeta meta = main.getItemMeta();
     }
 
     @EventHandler
