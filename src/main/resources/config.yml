@@ -2,6 +2,8 @@
 global_max_money: 10000
 #amount of precent to deduct from someone who has died to another player
 deduct_amount_precent: 70
+#what precent of money to deduct on a players natural (non-pvp) death?
+currency_deduct_amount_natural: 20
 #default save path
 #what is the data folders name?
 currency_save_path: "CurrencyData"

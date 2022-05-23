@@ -85,5 +85,6 @@ public class CurrencyPlugin extends JavaPlugin {
         Globals.StartingMoney = config.getInt("player_starting_money");
         Globals.DeductAmount = config.getInt("deduct_amount_precent");
         Globals.CurrencySymbol = config.getString("currency_symbol");
+        Globals.DeductAmountNatural = config.getInt("currency_deduct_amount_natural");
     }
 }

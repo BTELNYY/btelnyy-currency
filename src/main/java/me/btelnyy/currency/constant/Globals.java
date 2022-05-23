@@ -2,6 +2,8 @@ package me.btelnyy.currency.constant;
 
 import java.util.Hashtable;
 
+import org.bukkit.ChatColor;
+
 import me.btelnyy.currency.playerdata.PlayerData;
 
 public class Globals {
@@ -11,6 +13,8 @@ public class Globals {
     public static int StartingMoney = 0;
     public static String CurrencyPath = "./plugins/btelnyy-currency/CurrencyData/";
     public static int DeductAmount = 70;
+    public static int DeductAmountNatural = 20;
     public static String CurrencySymbol = "$";
     public static String DataFolderName = "CurrencyData";
+    public static String VoucherName = ChatColor.GOLD + "Money Voucher (Right click to redeem)";
 }

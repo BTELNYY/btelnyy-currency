@@ -1,17 +1,14 @@
 package me.btelnyy.currency.command;
 
-import java.util.ArrayList;
-
 import org.bukkit.ChatColor;
-import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
-import org.bukkit.inventory.meta.ItemMeta;
 
+import me.btelnyy.currency.constant.Globals;
 import me.btelnyy.currency.playerdata.*;
 import me.btelnyy.currency.utility.Utility;
 
@@ -38,21 +35,14 @@ public class CommandWithdraw implements CommandExecutor {
         }
         //everything checks out
         PlayerInventory inv = p.getInventory();
-        ItemStack item = new ItemStack(Material.PAPER, 1);
-        ItemMeta meta = item.getItemMeta();
-        meta.setDisplayName(ChatColor.GOLD + "Money Voucher (Right click to redeem)");
-        ArrayList<String> lore = new ArrayList<String>();
-        //add the amount
-        lore.add(args[0]);
-        meta.setLore(lore);
-        
-        //update meta
-        item.setItemMeta(meta);
+        ItemStack item = Utility.getBankNote(args[0]);
         if(Utility.hasAvaliableSlot(p)){
             inv.addItem(item);
+            p.sendMessage(ChatColor.GRAY + "Withdrew " + Globals.CurrencySymbol + amount);
         }else{
             //drop the item if the inventory is full
-            p.getLocation().getWorld().dropItemNaturally(p.getLocation(), item);
+            p.sendMessage(ChatColor.GRAY + "Inventory full! The item has been thrown on the ground.");
+            p.getLocation().getWorld().dropItem(p.getLocation(), item);
         }
         data.PlayerBalance =  data.PlayerBalance - amount;
         PlayerDataHandler.SaveData(p.getUniqueId().toString());
