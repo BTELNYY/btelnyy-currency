@@ -40,3 +40,5 @@
 * How much money should every player start with?
 > `currency_symbol` (String)
 * What symbol to use? e.g. $ or €
+> `max_withdraw_amount` (int)
+* What is the maximum amount of money that a player can withdraw in one singular interaction. Set to 0 if you want to disable it (this is the default behavior)
