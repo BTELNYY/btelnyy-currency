@@ -15,10 +15,10 @@ import me.btelnyy.currency.playerdata.PlayerDataHandler;
 public class Utility {
     public static boolean hasAvaliableSlot(Player player){
         Inventory inv = player.getInventory();
-        if(inv.getContents().length > 35){
-            return false;
-        }else{
+        if(inv.firstEmpty() != -1){
             return true;
+        }else{
+            return false;
         }
         /*
         for(ItemStack item: inv.getContents()) {
@@ -30,6 +30,7 @@ public class Utility {
     return false;
     */
     }
+
     public static ItemStack getBankNote(Integer amount){
         ItemStack item = new ItemStack(Material.PAPER, 1);
         ItemMeta meta = item.getItemMeta();

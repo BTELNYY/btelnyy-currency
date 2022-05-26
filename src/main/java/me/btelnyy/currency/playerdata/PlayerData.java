@@ -6,4 +6,9 @@ public class PlayerData {
     public int PlayerBalance = 0;
     public boolean PlayerCanPay = true;
     public boolean PlayerCanBePaid = true;
+
+
+    public String getUniqueId(){
+        return this.PlayerUuid;
+    }
 }

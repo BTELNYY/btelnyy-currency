@@ -29,11 +29,59 @@ public class PlayerDataHandler {
         }
     }
 
+    public static String generatePlayerFolder(String UUID){
+        Path cur_config = Path.of(path + "/" + UUID + "/");
+        if (Files.notExists(cur_config, LinkOption.NOFOLLOW_LINKS)) {
+            try {
+                Files.createDirectory(cur_config);
+                return UUID;
+            } catch (Exception e) {
+                CurrencyPlugin.log(Level.SEVERE, "Can't create data folder! Folder path: " + cur_config + "Error: " + e.getMessage());
+                e.printStackTrace();
+                return UUID;
+            }
+        }else{
+            return UUID;
+        }
+    }
+    public static String generatePlayerFolder(Player player){
+        String UUID = player.getUniqueId().toString();
+        Path cur_config = Path.of(path + "/" + UUID + "/");
+        if (Files.notExists(cur_config, LinkOption.NOFOLLOW_LINKS)) {
+            try {
+                Files.createDirectory(cur_config);
+                return UUID;
+            } catch (Exception e) {
+                CurrencyPlugin.log(Level.SEVERE, "Can't create data folder! Folder path: " + cur_config + "Error: " + e.getMessage());
+                e.printStackTrace();
+                return UUID;
+            }
+        }else{
+            return UUID;
+        }
+    }
+    public static String generatePlayerFolder(PlayerData playerdata){
+        String UUID = playerdata.getUniqueId();
+        Path cur_config = Path.of(path + "/" + UUID + "/");
+        if (Files.notExists(cur_config, LinkOption.NOFOLLOW_LINKS)) {
+            try {
+                Files.createDirectory(cur_config);
+                return UUID;
+            } catch (Exception e) {
+                CurrencyPlugin.log(Level.SEVERE, "Can't create data folder! Folder path: " + cur_config + "Error: " + e.getMessage());
+                e.printStackTrace();
+                return UUID;
+            }
+        }else{
+            return UUID;
+        }
+    }
+
     public static PlayerData GetPlayerData(String UUID) {
         if (Globals.CachedPlayers.contains(UUID)) {
             return Globals.CachedPlayers.get(UUID);
         } //not cached uuid
-        File player_data = new File(path + UUID + ".yml");
+        File player_data = new File(path + generatePlayerFolder(UUID) + "/" + UUID + ".yml");
         String yamldata = null;
         try {
             yamldata = Files.readString(Path.of(player_data.toString()));
@@ -72,7 +120,7 @@ public class PlayerDataHandler {
         if (Globals.CachedPlayers.contains(UUID)) {
             return Globals.CachedPlayers.get(UUID);
         } //not cached uuid
-        File player_data = new File(path + UUID + ".yml");
+        File player_data = new File(path + generatePlayerFolder(UUID) + "/" + UUID + ".yml");
         String yamldata = null;
         try {
             yamldata = Files.readString(Path.of(player_data.toString()));
@@ -109,7 +157,7 @@ public class PlayerDataHandler {
 
     public static PlayerData CreateNewDataFile(String UUID) {
         Yaml yaml = new Yaml();
-        File player_data = new File(path + UUID + ".yml");
+        File player_data = new File(path + generatePlayerFolder(UUID) + "/" + UUID + ".yml");
         try {
             player_data.createNewFile();
             FileWriter writer = new FileWriter(player_data);
@@ -129,7 +177,7 @@ public class PlayerDataHandler {
     public static PlayerData CreateNewDataFile(Player player) {
         String UUID = player.getUniqueId().toString();
         Yaml yaml = new Yaml();
-        File player_data = new File(path + UUID + ".yml");
+        File player_data = new File(path + generatePlayerFolder(UUID) + "/" + UUID + ".yml");
         try {
             player_data.createNewFile();
             FileWriter writer = new FileWriter(player_data);
@@ -149,7 +197,7 @@ public class PlayerDataHandler {
 
     public static void SaveAndRemoveData(String UUID) {
         Yaml yaml = new Yaml();
-        File player_data = new File(path + UUID + ".yml");
+        File player_data = new File(path + generatePlayerFolder(UUID) + "/" + UUID + ".yml");
         try {
             FileWriter writer = new FileWriter(player_data);
             PlayerData pd = Globals.CachedPlayers.get(UUID);
@@ -164,7 +212,7 @@ public class PlayerDataHandler {
     public static void SaveAndRemoveData(Player player) {
         String UUID = player.getUniqueId().toString();
         Yaml yaml = new Yaml();
-        File player_data = new File(path + UUID + ".yml");
+        File player_data = new File(path + generatePlayerFolder(UUID) + "/" + UUID + ".yml");
         try {
             FileWriter writer = new FileWriter(player_data);
             PlayerData pd = Globals.CachedPlayers.get(UUID);
@@ -178,7 +226,7 @@ public class PlayerDataHandler {
     }
     public static void SaveData(String UUID) {
         Yaml yaml = new Yaml();
-        File player_data = new File(path + UUID + ".yml");
+        File player_data = new File(path + generatePlayerFolder(UUID) + "/" + UUID + ".yml");
         try {
             FileWriter writer = new FileWriter(player_data);
             PlayerData pd = Globals.CachedPlayers.get(UUID);
@@ -192,7 +240,7 @@ public class PlayerDataHandler {
     public static void SaveData(Player player) {
         String UUID = player.getUniqueId().toString();
         Yaml yaml = new Yaml();
-        File player_data = new File(path + UUID + ".yml");
+        File player_data = new File(path + generatePlayerFolder(UUID) + "/" + UUID + ".yml");
         try {
             FileWriter writer = new FileWriter(player_data);
             PlayerData pd = Globals.CachedPlayers.get(UUID);
@@ -225,12 +273,12 @@ public class PlayerDataHandler {
     }
 
     public static void DeleteData(String UUID) {
-        File player_data = new File(path + UUID + ".yml");
+        File player_data = new File(path + generatePlayerFolder(UUID) + "/" + UUID + ".yml");
         player_data.delete();
     }
     public static void DeleteData(Player player) {
         String UUID = player.getUniqueId().toString();
-        File player_data = new File(path + UUID + ".yml");
+        File player_data = new File(path + generatePlayerFolder(UUID) + "/" + UUID + ".yml");
         player_data.delete();
     }
 

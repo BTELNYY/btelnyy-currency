@@ -17,4 +17,5 @@ public class Globals {
     public static String CurrencySymbol = "$";
     public static String DataFolderName = "CurrencyData";
     public static String VoucherName = ChatColor.GOLD + "Money Voucher (Right click to redeem)";
+    public static int MaxWithdrawAmount = 0;
 }

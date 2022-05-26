@@ -33,6 +33,12 @@ public class CommandWithdraw implements CommandExecutor {
             sender.sendMessage(ChatColor.RED + "Error: You cannot withdraw more than you have in your balance.");
             return true;
         }
+        if(Globals.MaxWithdrawAmount > 0){
+            if(amount > Globals.MaxWithdrawAmount){
+                sender.sendMessage(ChatColor.RED + "Error: You cannot withdraw more than " + Globals.CurrencySymbol + Globals.MaxWithdrawAmount + " per interaction.");
+                return true;
+            }
+        }
         //everything checks out
         PlayerInventory inv = p.getInventory();
         ItemStack item = Utility.getBankNote(args[0]);

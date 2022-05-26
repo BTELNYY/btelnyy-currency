@@ -42,9 +42,9 @@ public class EventHandle implements Listener {
             CurrencyPlugin.log(Level.WARNING, "Failed loading " + UUID + "'s" + "player data. ");
             e.printStackTrace();
             player.kickPlayer(ChatColor.RED + "Your playerdata failed to load, try rejoining");
+            PlayerDataHandler.CreateNewDataFile(player);
         }
     }
-
     @EventHandler
     public void onItemInteract(PlayerInteractEvent event){
         Action action = event.getAction();
