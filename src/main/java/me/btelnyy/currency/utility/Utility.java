@@ -74,4 +74,18 @@ public class Utility {
         }
         return penalty;
     }
+    public static String transactionBuilder(Player Sender, Player Target, Integer Amount, String Date, String TransactionType){
+        String SenderName = Sender.getName();
+        String TargetName = Target.getName();
+        Date = Utility.getDate();
+        /*
+            1. Date
+            2. Type
+            3. Amount
+            4. Sender
+            5. Target
+        */
+        String Transaction = Date + " " + TransactionType + " " + Amount.toString() + " " + SenderName + " " + TargetName;
+        return Transaction;
+    }
 }
