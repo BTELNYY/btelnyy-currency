@@ -87,5 +87,6 @@ public class CurrencyPlugin extends JavaPlugin {
         Globals.CurrencySymbol = config.getString("currency_symbol");
         Globals.DeductAmountNatural = config.getInt("currency_deduct_amount_natural");
         Globals.MaxWithdrawAmount = config.getInt("max_withdraw_amount");
+        Globals.DebugMode = config.getBoolean("debug");
     }
 }

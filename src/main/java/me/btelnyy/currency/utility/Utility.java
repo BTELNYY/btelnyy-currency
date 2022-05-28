@@ -1,6 +1,11 @@
 package me.btelnyy.currency.utility;
 
+import java.util.Date;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -13,6 +18,12 @@ import me.btelnyy.currency.playerdata.PlayerData;
 import me.btelnyy.currency.playerdata.PlayerDataHandler;
 
 public class Utility {
+    public static String getDate(){
+        Date date = Calendar.getInstance().getTime();  
+        DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy hh:mm:ss");  
+        String strDate = dateFormat.format(date);  
+        return strDate;
+    }
     public static boolean hasAvaliableSlot(Player player){
         Inventory inv = player.getInventory();
         if(inv.firstEmpty() != -1){

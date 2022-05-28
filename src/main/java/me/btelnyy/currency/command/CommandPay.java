@@ -27,7 +27,7 @@ public class CommandPay implements CommandExecutor {
         }
         Player Target = Bukkit.getPlayer(args[0]);
         int PayAmount = Integer.parseInt(args[1]);
-        if (Sender == Target) {
+        if (Sender == Target && Globals.DebugMode == false) {
             Sender.sendMessage(ChatColor.RED + "Error: You cannot pay yourself.");
             return true;
         }
@@ -53,6 +53,7 @@ public class CommandPay implements CommandExecutor {
         }
         SenderData.PlayerBalance -= PayAmount;
         TargetData.PlayerBalance += PayAmount;
+        
         Sender.sendMessage(ChatColor.GRAY + "You have payed " + Target.getName() + " " + Globals.CurrencySymbol + PayAmount);
         Target.sendMessage(ChatColor.GRAY + "You have received " + Globals.CurrencySymbol + PayAmount + " from: " + Target.getName());
         //save data but do not remove it from the cache
