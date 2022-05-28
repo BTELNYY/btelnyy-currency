@@ -1,6 +1,7 @@
 package me.btelnyy.currency.playerdata;
 
 import java.util.ArrayList;
+//import java.util.List;
 
 public class PlayerData {
     public String PlayerUuid = "00000000-0000-0000-0000-000000000000";

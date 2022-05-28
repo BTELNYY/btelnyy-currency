@@ -20,7 +20,7 @@ import me.btelnyy.currency.playerdata.PlayerDataHandler;
 public class Utility {
     public static String getDate(){
         Date date = Calendar.getInstance().getTime();  
-        DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy hh:mm:ss");  
+        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy-hh:mm:ss");  
         String strDate = dateFormat.format(date);  
         return strDate;
     }
@@ -77,13 +77,15 @@ public class Utility {
     public static String transactionBuilder(Player Sender, Player Target, Integer Amount, String Date, String TransactionType){
         String SenderName = Sender.getName();
         String TargetName = Target.getName();
-        Date = Utility.getDate();
+        if(Date == null){
+            Date = Utility.getDate();
+        }
         /*
             1. Date
             2. Type
             3. Amount
-            4. Sender
-            5. Target
+            4. From
+            5. To
         */
         String Transaction = Date + " " + TransactionType + " " + Amount.toString() + " " + SenderName + " " + TargetName;
         return Transaction;

@@ -1,5 +1,6 @@
 package me.btelnyy.currency.command;
 
+import me.btelnyy.currency.CurrencyPlugin;
 import me.btelnyy.currency.constant.Globals;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -8,6 +9,9 @@ import org.bukkit.entity.Player;
 
 import me.btelnyy.currency.playerdata.PlayerData;
 import me.btelnyy.currency.playerdata.PlayerDataHandler;
+import me.btelnyy.currency.utility.Utility;
+
+import java.util.logging.Level;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -51,9 +55,13 @@ public class CommandPay implements CommandExecutor {
             Sender.sendMessage(ChatColor.RED + "Error: You do not have enough money.");
             return true;
         }
+        if(SenderData.Transactions == null){
+            CurrencyPlugin.log(Level.INFO, "Transactions is null");
+        }
         SenderData.PlayerBalance -= PayAmount;
         TargetData.PlayerBalance += PayAmount;
-        
+        SenderData.Transactions.add(Utility.transactionBuilder(Sender, Target, PayAmount, null, "OUT"));
+        TargetData.Transactions.add(Utility.transactionBuilder(Sender, Target, PayAmount, null, "IN"));
         Sender.sendMessage(ChatColor.GRAY + "You have payed " + Target.getName() + " " + Globals.CurrencySymbol + PayAmount);
         Target.sendMessage(ChatColor.GRAY + "You have received " + Globals.CurrencySymbol + PayAmount + " from: " + Target.getName());
         //save data but do not remove it from the cache

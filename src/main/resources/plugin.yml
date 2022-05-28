@@ -35,3 +35,7 @@ commands:
       description: Withdraw money into an item
       usage: /withdraw <amount>
       permission: btelnyy.command.withdraw
+   transactions:
+      description: Show recent money transfersping 
+      usage: /transactions <index|all>
+      permission: btelnyy.command.transactions

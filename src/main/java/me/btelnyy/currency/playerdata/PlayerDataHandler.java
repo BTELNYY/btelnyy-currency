@@ -165,6 +165,7 @@ public class PlayerDataHandler {
             pd.PlayerUuid = UUID;
             pd.PlayerBalance = Globals.StartingMoney;
             yaml.dump(pd, writer);
+            //yaml.dumpAll(pd.Transactions.iterator(), writer);
             writer.close();
             return pd;
         } catch (Exception e) {
@@ -185,6 +186,7 @@ public class PlayerDataHandler {
             pd.PlayerUuid = UUID;
             pd.PlayerBalance = Globals.StartingMoney;
             yaml.dump(pd, writer);
+            //yaml.dumpAll(pd.Transactions.iterator(), writer);
             writer.close();
             return pd;
         } catch (Exception e) {
@@ -202,6 +204,7 @@ public class PlayerDataHandler {
             FileWriter writer = new FileWriter(player_data);
             PlayerData pd = Globals.CachedPlayers.get(UUID);
             yaml.dump(pd, writer);
+            //yaml.dumpAll(pd.Transactions.iterator(), writer);
             writer.close();
             CurrencyPlugin.log(Level.INFO, "Saving " + UUID + "'s data");
             Globals.CachedPlayers.remove(UUID);
@@ -217,6 +220,7 @@ public class PlayerDataHandler {
             FileWriter writer = new FileWriter(player_data);
             PlayerData pd = Globals.CachedPlayers.get(UUID);
             yaml.dump(pd, writer);
+            //yaml.dumpAll(pd.Transactions.iterator(), writer);
             writer.close();
             CurrencyPlugin.log(Level.INFO, "Saving " + UUID + "'s data");
             Globals.CachedPlayers.remove(UUID);
@@ -231,6 +235,7 @@ public class PlayerDataHandler {
             FileWriter writer = new FileWriter(player_data);
             PlayerData pd = Globals.CachedPlayers.get(UUID);
             yaml.dump(pd, writer);
+            //yaml.dumpAll(pd.Transactions.iterator(), writer);
             writer.close();
             CurrencyPlugin.log(Level.INFO, "Saving " + UUID + "'s data");
         } catch (Exception e) {
@@ -245,6 +250,7 @@ public class PlayerDataHandler {
             FileWriter writer = new FileWriter(player_data);
             PlayerData pd = Globals.CachedPlayers.get(UUID);
             yaml.dump(pd, writer);
+            //yaml.dumpAll(pd.Transactions.iterator(), writer);
             writer.close();
             CurrencyPlugin.log(Level.INFO, "Saving " + UUID + "'s data");
         } catch (Exception e) {

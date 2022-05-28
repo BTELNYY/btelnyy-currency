@@ -42,5 +42,10 @@ bin/
 # Ignore chad Maven files
 target/
 dependency-reduced-pom.xml
+
+# Ignore chad IDE files
 *.code-workspace
 .vscode/
+
+# Ignore compile scripts
+*.bat
