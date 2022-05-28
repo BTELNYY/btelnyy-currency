@@ -2,6 +2,8 @@
  * A currency minecraft plugin.
  * Check us out on [Discord](https://discord.gg/P22tFkjTm3)
  * Report issues on GitHub or on Discord, I don't care which.
+# **BELOW DATA IS FOR THE RELEASES, COMPILING MAY YEILD DIFFERENT RESULTS!**
+ * If you need support, ask on Discord or on GitHub issues
 ## Commands
  If you forget the syntax, just type the command without any arguments and it will print the syntax for you.
 ### User commands
