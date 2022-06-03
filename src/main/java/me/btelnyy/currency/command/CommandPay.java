@@ -35,6 +35,10 @@ public class CommandPay implements CommandExecutor {
             Sender.sendMessage(ChatColor.RED + "Error: You cannot pay yourself.");
             return true;
         }
+        if(Globals.NoPlayerTransactions){
+            Sender.sendMessage(ChatColor.RED + "Error: Global player interactions are currnetly disabled.");
+            return true;
+        }
         //moved to prevent massive errors
         PlayerData SenderData = PlayerDataHandler.GetPlayerData(Sender.getUniqueId().toString());
         PlayerData TargetData = PlayerDataHandler.GetPlayerData(Target.getUniqueId().toString());

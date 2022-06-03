@@ -60,6 +60,7 @@ public class CurrencyPlugin extends JavaPlugin {
         registerCommandExecutor("togglepaid", new CommandTogglePaid());
         registerCommandExecutor("withdraw", new CommandWithdraw());
         registerCommandExecutor("transactions", new CommandTransactions());
+        registerCommandExecutor("togglewithdraw", new CommandToggleWithdraw());
         
         log(Level.INFO, "Check out the project on GitHub!: https://github.com/BTELNYY/btelnyy-currency");
     }

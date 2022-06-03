@@ -15,5 +15,7 @@ currency_symbol: "$"
 #what is the maximum amount of money that a player can withdraw per /withdraw ?
 #set to 0 if you want to disable
 max_withdraw_amount: 0
+#disable global transactions between players, does not affect admin commands
+no_player_transactions: false
 #a setting for dev only things, do not enable unless you like half broken commands
 debug: false

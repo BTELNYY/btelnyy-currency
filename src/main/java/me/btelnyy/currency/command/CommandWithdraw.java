@@ -25,9 +25,16 @@ public class CommandWithdraw implements CommandExecutor {
             sender.sendMessage(ChatColor.RED + "Error: Invalid syntax. Usage: /withdraw <amount>");
             return true;
         }
+        if(Globals.NoPlayerTransactions){
+            sender.sendMessage(ChatColor.RED + "Error: Global player interactions are currnetly disabled.");
+            return true;
+        }
         //assumes sender check passes
         Player p = (Player) sender;
-        PlayerData data = PlayerDataHandler.GetPlayerData(p.getUniqueId().toString());
+        PlayerData data = PlayerDataHandler.GetPlayerData(p);
+        if(!data.PlayerCanWithdraw){
+            p.sendMessage(ChatColor.RED + "Error: You cannot withdraw money.");
+        }
         int amount = Integer.parseInt(args[0]);
         if(amount > data.PlayerBalance){
             sender.sendMessage(ChatColor.RED + "Error: You cannot withdraw more than you have in your balance.");

@@ -19,6 +19,7 @@ public class Globals {
     public static String VoucherName = ChatColor.GOLD + "Money Voucher (Right click to redeem)";
     public static int MaxWithdrawAmount = 0;
     public static int MaxTransactionsShown = 5;
+    public static boolean NoPlayerTransactions = false;
     //debug
     public static boolean DebugMode = false;
 }

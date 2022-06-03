@@ -39,3 +39,7 @@ commands:
       description: Show recent money transfersping 
       usage: /transactions <index|all>
       permission: btelnyy.command.transactions
+   togglewithdraw:
+      description: Toggle if a player can withdraw money
+      usage: /togglewithdraw <player>
+      permission: btelnyy.command.togglewithdraw

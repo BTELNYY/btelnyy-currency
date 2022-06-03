@@ -8,7 +8,9 @@ public class PlayerData {
     public int PlayerBalance = 0;
     public boolean PlayerCanPay = true;
     public boolean PlayerCanBePaid = true;
+    public boolean PlayerCanWithdraw = true;
     //non functional as of 5/27/2022, may change later
+    //now functional, ignore above message 6/2/2022
     public ArrayList<String> Transactions = new ArrayList<String>();
 
     public String getUniqueId(){
