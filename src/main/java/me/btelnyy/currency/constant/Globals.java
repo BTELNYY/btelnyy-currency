@@ -20,6 +20,8 @@ public class Globals {
     public static int MaxWithdrawAmount = 0;
     public static int MaxTransactionsShown = 5;
     public static boolean NoPlayerTransactions = false;
+    public static int MaximumBalance = -1;
+    public static boolean EnforceMaxMoney = true;
     //debug
     public static boolean DebugMode = false;
 }

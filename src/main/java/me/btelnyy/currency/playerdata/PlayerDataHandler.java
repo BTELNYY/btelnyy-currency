@@ -228,6 +228,22 @@ public class PlayerDataHandler {
             CurrencyPlugin.log(java.util.logging.Level.WARNING, "An error occured when trying to save playerdata for " + UUID + ": " + e.getMessage());
         }
     }
+    public static void SaveAndRemoveData(PlayerData player) {
+        String UUID = player.getUniqueId();
+        Yaml yaml = new Yaml();
+        File player_data = new File(path + generatePlayerFolder(UUID) + "/" + UUID + ".yml");
+        try {
+            FileWriter writer = new FileWriter(player_data);
+            PlayerData pd = Globals.CachedPlayers.get(UUID);
+            yaml.dump(pd, writer);
+            //yaml.dumpAll(pd.Transactions.iterator(), writer);
+            writer.close();
+            CurrencyPlugin.log(Level.INFO, "Saving " + UUID + "'s data");
+            Globals.CachedPlayers.remove(UUID);
+        } catch (Exception e) {
+            CurrencyPlugin.log(java.util.logging.Level.WARNING, "An error occured when trying to save playerdata for " + UUID + ": " + e.getMessage());
+        }
+    }
     public static void SaveData(String UUID) {
         Yaml yaml = new Yaml();
         File player_data = new File(path + generatePlayerFolder(UUID) + "/" + UUID + ".yml");
@@ -244,6 +260,21 @@ public class PlayerDataHandler {
     }
     public static void SaveData(Player player) {
         String UUID = player.getUniqueId().toString();
+        Yaml yaml = new Yaml();
+        File player_data = new File(path + generatePlayerFolder(UUID) + "/" + UUID + ".yml");
+        try {
+            FileWriter writer = new FileWriter(player_data);
+            PlayerData pd = Globals.CachedPlayers.get(UUID);
+            yaml.dump(pd, writer);
+            //yaml.dumpAll(pd.Transactions.iterator(), writer);
+            writer.close();
+            CurrencyPlugin.log(Level.INFO, "Saving " + UUID + "'s data");
+        } catch (Exception e) {
+            CurrencyPlugin.log(java.util.logging.Level.WARNING, "An error occured when trying to save playerdata for " + UUID + ": " + e.getMessage());
+        }
+    }
+    public static void SaveData(PlayerData player) {
+        String UUID = player.getUniqueId();
         Yaml yaml = new Yaml();
         File player_data = new File(path + generatePlayerFolder(UUID) + "/" + UUID + ".yml");
         try {

@@ -17,5 +17,11 @@ currency_symbol: "$"
 max_withdraw_amount: 0
 #disable global transactions between players, does not affect admin commands
 no_player_transactions: false
+#maximum amount of money per player account, does not effect admin commands
+#this setting is a default, you can change this with an admin command on a specific player
+#set to -1 to disable
+player_max_money: -1
+#enforce bank account limits, does not effect admin commands
+enforce_max_money_player: true
 #a setting for dev only things, do not enable unless you like half broken commands
 debug: false

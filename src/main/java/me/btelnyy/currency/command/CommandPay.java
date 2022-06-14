@@ -1,6 +1,5 @@
 package me.btelnyy.currency.command;
 
-import me.btelnyy.currency.CurrencyPlugin;
 import me.btelnyy.currency.constant.Globals;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -10,8 +9,6 @@ import org.bukkit.entity.Player;
 import me.btelnyy.currency.playerdata.PlayerData;
 import me.btelnyy.currency.playerdata.PlayerDataHandler;
 import me.btelnyy.currency.utility.Utility;
-
-import java.util.logging.Level;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -27,6 +24,12 @@ public class CommandPay implements CommandExecutor {
         }
         if (Bukkit.getPlayer(args[0]) == null) {
             Sender.sendMessage(ChatColor.RED + "Error: Player not found.");
+            return true;
+        }
+        try{
+            Integer.parseInt(args[1]);
+        }catch(Exception e){
+            Sender.sendMessage(ChatColor.RED + "Error: Invalid integer format.");
             return true;
         }
         Player Target = Bukkit.getPlayer(args[0]);
@@ -59,8 +62,11 @@ public class CommandPay implements CommandExecutor {
             Sender.sendMessage(ChatColor.RED + "Error: You do not have enough money.");
             return true;
         }
-        if(SenderData.Transactions == null){
-            CurrencyPlugin.log(Level.INFO, "Transactions is null");
+        if(TargetData.MaximumBalance != -1 && Globals.EnforceMaxMoney){
+            if((TargetData.PlayerBalance += PayAmount) >= TargetData.MaximumBalance){
+                Sender.sendMessage(ChatColor.RED + "Error: Target players bank account is full.");
+                return true;
+            }
         }
         SenderData.PlayerBalance -= PayAmount;
         TargetData.PlayerBalance += PayAmount;

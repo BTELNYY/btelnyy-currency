@@ -35,6 +35,12 @@ public class CommandWithdraw implements CommandExecutor {
         if(!data.PlayerCanWithdraw){
             p.sendMessage(ChatColor.RED + "Error: You cannot withdraw money.");
         }
+        try{
+            Integer.parseInt(args[0]);
+        }catch(Exception e){
+            sender.sendMessage(ChatColor.RED + "Error: Invalid integer format.");
+            return true;
+        }
         int amount = Integer.parseInt(args[0]);
         if(amount > data.PlayerBalance){
             sender.sendMessage(ChatColor.RED + "Error: You cannot withdraw more than you have in your balance.");

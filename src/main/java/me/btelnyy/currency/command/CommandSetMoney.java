@@ -15,10 +15,16 @@ public class CommandSetMoney implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender arg0, Command arg1, String arg2, String[] arg3) {
-        Player sender = (Player) arg0;
+        CommandSender sender = arg0;
         Player Target;
         if (arg3[0] == null || Bukkit.getPlayer(arg3[0]) == null || arg3[1] == null) {
             sender.sendMessage(ChatColor.RED + "Error: Invalid syntax. Usage /setmoney <target> <amount>");
+            return true;
+        }
+        try{
+            Integer.parseInt(arg3[1]);
+        }catch(Exception e){
+            sender.sendMessage(ChatColor.RED + "Error: Invalid integer format.");
             return true;
         }
         Target = Bukkit.getPlayer(arg3[0]);
