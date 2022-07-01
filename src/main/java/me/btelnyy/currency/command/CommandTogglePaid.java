@@ -25,7 +25,7 @@ public class CommandTogglePaid implements CommandExecutor {
             return true;
         }
         Player Target = Bukkit.getPlayer(args[0]);
-        PlayerData TargetData = PlayerDataHandler.GetPlayerData(Target.getUniqueId().toString());
+        PlayerData TargetData = PlayerDataHandler.GetData(Target.getUniqueId().toString());
         TargetData.PlayerCanBePaid = !TargetData.PlayerCanBePaid;
         if (TargetData.PlayerCanBePaid) {
             Sender.sendMessage(ChatColor.GRAY + "Player " + Target.getName() + " can now be paid by other players.");

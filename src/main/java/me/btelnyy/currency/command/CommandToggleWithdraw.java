@@ -25,7 +25,7 @@ public class CommandToggleWithdraw implements CommandExecutor {
             return true;
         }
         Player Target = Bukkit.getPlayer(args[0]);
-        PlayerData TargetData = PlayerDataHandler.GetPlayerData(Target);
+        PlayerData TargetData = PlayerDataHandler.GetData(Target);
         TargetData.PlayerCanWithdraw = !TargetData.PlayerCanWithdraw;
         if (TargetData.PlayerCanWithdraw) {
             Sender.sendMessage(ChatColor.GRAY + "Player " + Target.getName() + " can now withdraw money.");

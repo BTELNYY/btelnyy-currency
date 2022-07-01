@@ -37,12 +37,12 @@ public class EventHandle implements Listener {
         Player player = event.getPlayer();
         String UUID = player.getUniqueId().toString();
         try {
-            PlayerDataHandler.GetPlayerData(UUID);
+            PlayerDataHandler.GetData(UUID);
         } catch (Exception e) {
             PlayerDataHandler.DeleteData(UUID);
-            CurrencyPlugin.log(Level.WARNING, "Failed loading " + UUID + "'s" + "player data. ");
+            CurrencyPlugin.getInstance().log(Level.WARNING, "Failed loading " + UUID + "'s" + "player data. ");
             e.printStackTrace();
-            player.kickPlayer(ChatColor.RED + "Your playerdata failed to load, try rejoining");
+            player.kickPlayer(ChatColor.RED + "Your playerdata failed to load, try rejoining. (it has also been reset, contact server admins for more info.");
             PlayerDataHandler.CreateNewDataFile(player);
         }
     }
@@ -66,7 +66,7 @@ public class EventHandle implements Listener {
             return;
         }
         int amount = Integer.parseInt(lore.get(0));
-        PlayerData data = PlayerDataHandler.GetPlayerData(p);
+        PlayerData data = PlayerDataHandler.GetData(p);
         Inventory inv = p.getInventory();
         if(Globals.EnforceMaxMoney && data.MaximumBalance > -1){
             if((data.PlayerBalance += amount) >= data.MaximumBalance){
@@ -90,7 +90,7 @@ public class EventHandle implements Listener {
         //remove only one item if there is a stack
         main.setAmount(main.getAmount() - 1);
         p.sendMessage(ChatColor.GRAY + "Redeemed a bank note for " + Globals.CurrencySymbol + amount + ".");
-        CurrencyPlugin.log(Level.INFO, p.getName() + " redeemed a bank note for " + Globals.CurrencySymbol + amount + ".");
+        CurrencyPlugin.getInstance().log(Level.INFO, p.getName() + " redeemed a bank note for " + Globals.CurrencySymbol + amount + ".");
     }
 
     @EventHandler
@@ -117,8 +117,8 @@ public class EventHandle implements Listener {
             return;
         }
         Player killer = (Player) event.getEntity().getKiller();
-        PlayerData DeadData = PlayerDataHandler.GetPlayerData(deadplayer.getUniqueId().toString());
-        PlayerData KillerData = PlayerDataHandler.GetPlayerData(killer.getUniqueId().toString());
+        PlayerData DeadData = PlayerDataHandler.GetData(deadplayer.getUniqueId().toString());
+        PlayerData KillerData = PlayerDataHandler.GetData(killer.getUniqueId().toString());
         int penalty = 0;
         if (DeadData.PlayerBalance > 0) {
             penalty = (int) (DeadData.PlayerBalance * (Globals.DeductAmount / 100.0f));
@@ -144,7 +144,7 @@ public class EventHandle implements Listener {
         Location spawn = Bukkit.getServer().getWorld("world").getSpawnLocation();
         if(cause == DamageCause.VOID){
             int penalty = Utility.getPenaltyNaturalDeath(player);
-            PlayerData data = PlayerDataHandler.GetPlayerData(player);
+            PlayerData data = PlayerDataHandler.GetData(player);
             data.PlayerBalance = data.PlayerBalance - penalty;
             PlayerDataHandler.SaveData(player);
             ItemStack item = Utility.getBankNote(penalty);
@@ -156,7 +156,7 @@ public class EventHandle implements Listener {
             return;
         }
         int penalty = Utility.getPenaltyNaturalDeath(player);
-        PlayerData data = PlayerDataHandler.GetPlayerData(player);
+        PlayerData data = PlayerDataHandler.GetData(player);
         data.PlayerBalance = data.PlayerBalance - penalty;
         PlayerDataHandler.SaveData(player);
         ItemStack item = Utility.getBankNote(penalty);

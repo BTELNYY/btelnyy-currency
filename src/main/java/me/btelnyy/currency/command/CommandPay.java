@@ -43,8 +43,8 @@ public class CommandPay implements CommandExecutor {
             return true;
         }
         //moved to prevent massive errors
-        PlayerData SenderData = PlayerDataHandler.GetPlayerData(Sender.getUniqueId().toString());
-        PlayerData TargetData = PlayerDataHandler.GetPlayerData(Target.getUniqueId().toString());
+        PlayerData SenderData = PlayerDataHandler.GetData(Sender.getUniqueId().toString());
+        PlayerData TargetData = PlayerDataHandler.GetData(Target.getUniqueId().toString());
         if (SenderData.PlayerCanPay == false) {
             Sender.sendMessage(ChatColor.RED + "Error: You cannot pay other players.");
             return true;

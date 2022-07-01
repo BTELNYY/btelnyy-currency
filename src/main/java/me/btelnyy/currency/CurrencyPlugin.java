@@ -23,7 +23,7 @@ public class CurrencyPlugin extends JavaPlugin {
         return instance;
     }
 
-    public static void log(java.util.logging.Level l, String m) {
+    public void log(java.util.logging.Level l, String m) {
         instance.getLogger().log(l, m);
     }
 

@@ -31,7 +31,7 @@ public class CommandWithdraw implements CommandExecutor {
         }
         //assumes sender check passes
         Player p = (Player) sender;
-        PlayerData data = PlayerDataHandler.GetPlayerData(p);
+        PlayerData data = PlayerDataHandler.GetData(p);
         if(!data.PlayerCanWithdraw){
             p.sendMessage(ChatColor.RED + "Error: You cannot withdraw money.");
         }

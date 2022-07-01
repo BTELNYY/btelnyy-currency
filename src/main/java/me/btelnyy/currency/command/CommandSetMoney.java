@@ -28,7 +28,7 @@ public class CommandSetMoney implements CommandExecutor {
             return true;
         }
         Target = Bukkit.getPlayer(arg3[0]);
-        PlayerData TargetData = PlayerDataHandler.GetPlayerData(Target.getUniqueId().toString());
+        PlayerData TargetData = PlayerDataHandler.GetData(Target.getUniqueId().toString());
         int amount = Integer.parseInt(arg3[1]);
         TargetData.PlayerBalance = amount;
         PlayerDataHandler.SaveData(Target.getUniqueId().toString());

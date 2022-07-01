@@ -67,7 +67,7 @@ public class Utility {
         return item;
     }
     public static Integer getPenaltyNaturalDeath(Player p){
-        PlayerData DeadData = PlayerDataHandler.GetPlayerData(p);
+        PlayerData DeadData = PlayerDataHandler.GetData(p);
         int penalty = 0;
         if (DeadData.PlayerBalance > 0) {
             penalty = (int) (DeadData.PlayerBalance * (Globals.DeductAmountNatural / 100.0f));

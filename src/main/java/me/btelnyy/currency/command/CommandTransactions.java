@@ -21,7 +21,7 @@ public class CommandTransactions implements CommandExecutor{
             return true;
         }
         Player player = (Player) sender;
-        PlayerData pdata = PlayerDataHandler.GetPlayerData(player);
+        PlayerData pdata = PlayerDataHandler.GetData(player);
         //transaction data
         ArrayList<String> tdata = pdata.Transactions;
         if(tdata.isEmpty()){

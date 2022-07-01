@@ -25,7 +25,7 @@ public class CommandSetMaxBalance implements CommandExecutor {
             return true;
         }
         Player Target = Bukkit.getPlayer(args[0]);
-        PlayerData TargetData = PlayerDataHandler.GetPlayerData(Target);
+        PlayerData TargetData = PlayerDataHandler.GetData(Target);
         int amount = 0;
         try{
             amount = Integer.parseInt(args[1]);

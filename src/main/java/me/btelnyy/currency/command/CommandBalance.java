@@ -18,11 +18,11 @@ public class CommandBalance implements CommandExecutor {
         Player sender = (Player) arg0;
         if (arg3.length < 0 && Bukkit.getPlayer(arg3[0]) != null && Bukkit.getPlayer(arg3[0]) != sender) {
             Player Target = Bukkit.getPlayer(arg3[0]);
-            PlayerData TargetData = PlayerDataHandler.GetPlayerData(Target.getUniqueId().toString());
+            PlayerData TargetData = PlayerDataHandler.GetData(Target.getUniqueId().toString());
             sender.sendMessage(ChatColor.GRAY + Target.getName() + "'s balance: " + Globals.CurrencySymbol + TargetData.PlayerBalance);
             ;
         }
-        PlayerData SenderData = PlayerDataHandler.GetPlayerData(sender.getUniqueId().toString());
+        PlayerData SenderData = PlayerDataHandler.GetData(sender.getUniqueId().toString());
         sender.sendRawMessage(ChatColor.GRAY + "Current balance: " + Globals.CurrencySymbol + SenderData.PlayerBalance);
         return true;
     }
