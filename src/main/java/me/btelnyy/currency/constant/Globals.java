@@ -1,6 +1,8 @@
 package me.btelnyy.currency.constant;
 
+import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.List;
 
 import org.bukkit.ChatColor;
 
@@ -8,6 +10,11 @@ import me.btelnyy.currency.playerdata.PlayerData;
 
 public class Globals {
     public static Hashtable<String, PlayerData> CachedPlayers = new Hashtable<String, PlayerData>();
+    //baltop
+    public static List<String> BaltopWaiters = new ArrayList<String>();
+    public static Hashtable<String, Integer> Baltop  = new Hashtable<String, Integer>();
+    public static String BaltopResult = "";
+    public static Boolean BaltopRunning = false;
     //these contain default values
     public static int GlobalMaxMoney = 10000;
     public static int StartingMoney = 0;
