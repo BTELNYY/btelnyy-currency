@@ -43,3 +43,7 @@ commands:
       description: Toggle if a player can withdraw money
       usage: /togglewithdraw <player>
       permission: btelnyy.command.togglewithdraw
+   baltop:
+      desciption: Caculate baltop of the server (cannot have more than one instance running)
+      usage: /baltop
+      permission: btelnyy.command.baltop

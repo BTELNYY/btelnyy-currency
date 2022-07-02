@@ -12,7 +12,6 @@ public class Globals {
     public static Hashtable<String, PlayerData> CachedPlayers = new Hashtable<String, PlayerData>();
     //baltop
     public static List<String> BaltopWaiters = new ArrayList<String>();
-    public static Hashtable<String, Integer> Baltop  = new Hashtable<String, Integer>();
     public static String BaltopResult = "";
     public static Boolean BaltopRunning = false;
     //these contain default values

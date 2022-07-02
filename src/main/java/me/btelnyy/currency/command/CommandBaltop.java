@@ -2,10 +2,10 @@ package me.btelnyy.currency.command;
 
 import java.io.*;
 import java.nio.file.*;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.Hashtable;
+import java.util.LinkedList;
 import java.util.Map;
+import java.util.UUID;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -51,10 +51,52 @@ public class CommandBaltop implements CommandExecutor{
                             file = parts[0];
                             Baltop.put(file, (Integer) GetData(file).PlayerBalance);
                         }
+                        sort();
                     }
                 }
                 static void sort(){
-                    //Transfer as List and sort it
+                    LinkedList<String> s = new LinkedList<String>();
+                    for(String UUID : Baltop.keySet()){
+                        PlayerData data = GetData(UUID);
+                        if(s.isEmpty()){
+                            s.push(UUID);
+                        }
+                        if(GetData(s.getFirst()).PlayerBalance < data.PlayerBalance || GetData(s.getFirst()).PlayerBalance == data.PlayerBalance){
+                            s.push(UUID);
+                        }
+                        if(GetData(s.getLast()).PlayerBalance > data.PlayerBalance || GetData(s.getLast()).PlayerBalance == data.PlayerBalance){
+                            int sizecalc = s.size();
+                            s.set(sizecalc, UUID);
+                        }
+                    }
+                    display(s);
+                }
+                static void display(LinkedList<String> list){
+                    Globals.BaltopResult = ChatColor.GRAY + "Baltop results: " +  " (" + list.size() + " )";
+                    int counter = 0;
+                    for(String ID : list){
+                        if(counter == 10){
+                            break;
+                        }
+                        UUID UUID = java.util.UUID.fromString(ID);
+                        Globals.BaltopResult += ChatColor.GRAY + "\n" + Bukkit.getPlayer(UUID).getName() + " - " + Globals.CurrencySymbol + GetData(ID).PlayerBalance;
+                        counter++;
+                    }
+                    for(String ID : Globals.BaltopWaiters){
+                        UUID UUID = java.util.UUID.fromString(ID);
+                        Player player = Bukkit.getPlayer(UUID);
+                        player.sendMessage(Globals.BaltopResult);
+                    }
+                    //cleanup
+                    Globals.BaltopRunning = false;
+                    Globals.BaltopResult = "";
+                    Globals.BaltopWaiters.clear();
+                    for(String ID : Baltop.keySet()){
+                        UUID UUID = java.util.UUID.fromString(ID);
+                        if(!Bukkit.getPlayer(UUID).isOnline()){
+                            Globals.CachedPlayers.remove(ID);
+                        }
+                    }
                 }
                 static String path = Globals.CurrencyPath;
                 static PlayerData GetData(String UUID) {
